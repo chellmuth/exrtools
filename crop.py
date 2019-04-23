@@ -17,9 +17,9 @@ def crop_filename(filename, from_shape, to_shape, offset, keep_orig=False):
 
         for y in range(new_data.shape[0]):
             for x in range(new_data.shape[1]):
-                new_data[y][x] = data[y + offset[1]][x + offset[0]]
-                new_data[y][x] = data[y + offset[1]][x + offset[0]]
-                new_data[y][x] = data[y + offset[1]][x + offset[0]]
+                new_data[y][x] = data[y + offset[0]][x + offset[1]]
+                new_data[y][x] = data[y + offset[0]][x + offset[1]]
+                new_data[y][x] = data[y + offset[0]][x + offset[1]]
 
         root_data[channel] = new_data
 
