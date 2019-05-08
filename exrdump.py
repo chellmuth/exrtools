@@ -5,6 +5,7 @@ import click
 import pyexr
 
 import crop as crop_mod
+import split as split_mod
 
 def check_has_channel(exr, channel):
     channels = dump_channels(exr)
@@ -35,8 +36,14 @@ def cli():
 @click.option("--from-shape", nargs=2, type=int, required=True)
 @click.option("--to-shape", nargs=2, type=int, required=True)
 @click.option("--offset", nargs=2, type=int, required=True)
-def crop(filename, from_shape, to_shape, offset, required=True):
-    crop_mod.crop_filename(filename, from_shape, to_shape, offset)
+def crop(filename, from_shape, to_shape, offset):
+    crop_mod.crop_filename(filename, filename, from_shape, to_shape, offset)
+
+@cli.command()
+@click.argument("filename")
+@click.option("--tiles", nargs=2, type=int, required=True)
+def split(filename, tiles):
+    split_mod.split_filename(filename, tiles)
 
 @cli.command()
 @click.argument("filename")
