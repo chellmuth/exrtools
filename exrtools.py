@@ -64,5 +64,17 @@ def missing(root, channel):
     missing_exrs = filter_exrs_missing_channel(root, channel)
     print(missing)
 
+@cli.command()
+@click.argument("exr_filename", type=click.Path(exists=True))
+@click.argument("out_filename", type=click.Path())
+@click.option("--channels", "-c", multiple=True, required=True)
+def filter(exr_filename, out_filename, channels):
+    exr = pyexr.open(exr_filename)
+    channel_data = {
+        channel: exr.get(channel)
+        for channel in channels
+    }
+    pyexr.write(out_filename, channel_data)
+
 if __name__ == "__main__":
     cli()
