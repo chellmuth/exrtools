@@ -2,5 +2,4 @@
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
-cd "${DIR}"
-pipenv run python exrtools.py "$@"
+pipenv run python "${DIR}"/exrtools.py "$@"
