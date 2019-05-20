@@ -74,6 +74,10 @@ def filter(exr_filename, out_filename, channels):
         channel: exr.get(channel)
         for channel in channels
     }
+
+    if len(channel_data) == 1:
+        channel_data["default"] = channel_data.pop(channels[0])
+
     pyexr.write(out_filename, channel_data)
 
 if __name__ == "__main__":
